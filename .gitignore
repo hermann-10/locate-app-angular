@@ -40,3 +40,6 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+#In order not to put online the information of the database
+**/src/environments/environment.ts
