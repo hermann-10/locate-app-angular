@@ -1,0 +1,106 @@
+<div class="container text-center">
+
+    <div class="form-signup">
+        <div class="authBlock">
+            <img class="mb-4" src="https://getbootstrap.com/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+            <h3>Sign Up</h3>
+
+            <form [formGroup]="registerForm" (ngSubmit)="register()">
+
+                <div class="form-floating">
+                    <input type="text" class="form-control" placeholder="Name" formControlName="name" required>
+                    <label for="floating-input">Name</label>
+                </div>
+
+                <div *ngIf="registerForm.get('name')?.invalid && (registerForm.get('name')?.dirty || registerForm.get('name')?.touched)" class="alert alert-danger">
+
+                    <div *ngIf="registerForm.get('name')?.errors?.['required']">
+                        Le nom est requis.
+                    </div>
+
+                    <div *ngIf="registerForm.get('name')?.errors?.['minlength']">
+                        Le nom doit avoir au moins 3 caractères.
+                    </div>
+
+                </div>
+
+                <div class="form-floating">
+                    <input type="email" class="form-control" placeholder="Email Address" formControlName="email" required>
+                    <label for="floating-input">Email</label>
+                </div>
+
+                <div *ngIf="registerForm.get('email')?.invalid && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched)" class="alert alert-danger">
+
+                    <div *ngIf="registerForm.get('email')?.errors?.['required']">
+                        L'email est requis.
+                    </div>
+
+                    <div *ngIf="registerForm.get('email')?.errors?.['pattern']">
+                        Veuillez fournir une adresse email valide.
+                    </div>
+
+                </div>
+
+                <div class="form-floating">
+                    <input type="password" class="form-control" placeholder="Password" formControlName="password" required>
+                    <label for="floating-input">Password</label>
+                </div>
+
+                <div *ngIf="registerForm.get('password')?.invalid && (registerForm.get('password')?.dirty || registerForm.get('password')?.touched)" class="alert alert-danger">
+
+                    <!-- <div *ngIf="email.errors?.required"> -->
+                    <!--L'email est requis.-->
+                    <!-- </div> -->
+
+                    <div *ngIf="registerForm.get('password')?.errors?.['required']">
+                        Le mot de passe est requis.
+                    </div>
+
+                    <div *ngIf="registerForm.get('password')?.errors?.['minlength']">
+                        Le mot de passe doit avoir au moins 6 caractères.
+                    </div>
+
+                    <!--<div *ngIf="loginForm.get('password')?.invalid">
+              Le mot de passe doit avoir au moins 6 caractères.
+            </div>-->
+                </div>
+
+
+                <button class="w-100 btn btn-lg btn-primary" type="submit" [disabled]="!registerForm.valid" (click)="onReset">Sign up</button>
+
+            </form>
+
+
+
+
+            <!--<div class="form-group">
+                <input type="button" class="w-100 btn btn-lg btn-primary mt-2" value="Sign Up" (click)="authService.SignUp(userEmail.value, userPwd.value)">
+            </div>-->
+
+            <div class="form-group">
+                <span class="or"><span class="orInner">Or</span></span>
+            </div>
+
+            <!-- Continue with Google -->
+            <div class="form-group">
+                <button type="button" class="w-100 btn btn-lg btn-primary mt-2" (click)="authService.GoogleAuth()">
+      
+          Continue with Google    <i class="fab fa-google"></i>
+        </button>
+            </div>
+
+            <!-- Continue with Facebook -->
+            <!--<div class="form-group">
+                <button type="button" class="w-100 btn btn-lg btn-primary mt-2" (click)="authService.FacebookAuth()">
+          <i class="fab fa-facebook"></i>
+          Continue with Facebook
+        </button>
+            </div>
+        </div>-->
+
+        <div class="redirectToLogin">
+            <span>Already have an account? <span class="redirect" routerLink="/sign-in">Log In</span></span>
+        </div>
+
+    </div>
+</div>
