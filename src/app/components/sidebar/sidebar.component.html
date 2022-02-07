@@ -27,27 +27,29 @@
                             <li><a class="dropdown-item" routerLink="/parc-workout">Parc-workout</a></li>
                         </ul>
                     </li>
-                </ul>
-                <li class="nav-item list-style-none">
-                    <a class="nav-link" routerLink="/about">About</a>
-                </li>
-                <li class="nav-item list-style-none">
-                    <a class="nav-link" routerLink="/contact">Contact</a>
-                </li>
-            
-                <li *ngIf="auth.user | async as user" class="nav-item dropdown list-style-none">
-                    <a class="nav-link dropdown-toggle" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <li class="nav-item list-style-none">
+                        <a class="nav-link" routerLink="/about">About</a>
+                    </li>
+
+
+                    <li class="nav-item list-style-none">
+                        <a class="nav-link" routerLink="/contact">Contact</a>
+                    </li>
+
+                    <li *ngIf="auth.user | async as user" class="nav-item dropdown list-style-none">
+                        <a class="nav-link dropdown-toggle" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         [{{ user.email }}]
         </a>
-                    <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
-                        <li><a class="dropdown-item" routerLink="/profil">Voir mon profil</a></li>
-                    </ul>
-                </li>
+                        <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
+                            <li><a class="dropdown-item" routerLink="/profil">Voir mon profil</a></li>
+                        </ul>
+                    </li>
 
 
-                <li class="nav-item list-style-none">
-                    <a class="nav-link" (click)="logout()">Se déconnecter</a>
-                </li>
+                    <li class="nav-item list-style-none">
+                        <a class="nav-link" (click)="logout()">Se déconnecter</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
