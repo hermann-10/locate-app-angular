@@ -3,7 +3,7 @@
 </div>
 <div class="d-flex" id="wrapper">
     <!-- Sidebar -->
-    <div class="bg-light border-right" id="sidebar-wrapper" style="position: fixed" [ngClass]="status ? 'hide' : 'show'">
+    <div *ngIf="auth.user | async as user" class="bg-light border-right mt-5" id="sidebar-wrapper" style="position: fixed" [ngClass]="status ? 'hide' : 'show'">
         <div class="sidebar-heading">LOGO </div>
         <div class="list-group list-group-flush">
             <a href="#" class="list-group-item list-group-item-action bg-light" routerLink="/dashboard">Dashboard</a>
@@ -11,70 +11,68 @@
             <a href="#" class="list-group-item list-group-item-action bg-light" routerLink="/parc-workout">Parc-workout</a>
             <a href="#" class="list-group-item list-group-item-action bg-light" routerLink="/about">About</a>
             <a href="#" class="list-group-item list-group-item-action bg-light" routerLink="/contact">Contact</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light" (click)="logout()">Se déconnecter</a>
-
+            <a class="list-group-item list-group-item-action bg-light" (click)="logout()">Se déconnecter</a>
         </div>
     </div>
     <!-- /#sidebar-wrapper -->
     <!-- Page Content -->
     <div id="page-content-wrapper">
-        <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+        <nav *ngIf="auth.user | async as user" class=" navbar fixed-top navbar-expand-lg navbar-light bg-light ">
 
-            <div class="container-fluid">
-                <button class="btn btn-primary" (click)="clickEvent()"><i class="fa-solid fa-bars"></i></button>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+            <div class="container-fluid ">
+                <button class="btn btn-primary " (click)="clickEvent() "><i class="fa-solid fa-bars "></i></button>
+                <button class="navbar-toggler " type="button " data-bs-toggle="collapse " data-bs-target="#navbarSupportedContent " aria-controls="navbarSupportedContent " aria-expanded="false " aria-label="Toggle navigation ">
+          <span class="navbar-toggler-icon "></span>
         </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <!--<li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                <div class=" collapse navbar-collapse " id="navbarSupportedContent ">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+                        <!--<li class="nav-item ">
+                            <a class="nav-link active " aria-current="page " href="# ">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
+                        <li class="nav-item ">
+                            <a class="nav-link " href="# ">Link</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <li class="nav-item dropdown ">
+                            <a class="nav-link dropdown-toggle " href="# " id="navbarDropdown " role="button " data-bs-toggle="dropdown " aria-expanded="false ">
                 Dropdown
               </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <ul class="dropdown-menu " aria-labelledby="navbarDropdown ">
+                                <li><a class="dropdown-item " href="# ">Action</a></li>
+                                <li><a class="dropdown-item " href="# ">Another action</a></li>
                                 <li>
-                                    <hr class="dropdown-divider">
+                                    <hr class="dropdown-divider ">
                                 </li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                <li><a class="dropdown-item " href="# ">Something else here</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                        <li class="nav-item ">
+                            <a class="nav-link disabled " href="# " tabindex="-1 " aria-disabled="true ">Disabled</a>
                         </li>-->
                     </ul>
 
 
 
-                    <ul class="list-style-none">
-                        <li *ngIf="auth.user | async as user" class="nav-item dropdown list-style-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        [{{ user.email }}]
-        </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" routerLink="/profil">Voir mon profil</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" (click)="logout()">Se déconnecter</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="button">Search</button>
-                    </form>
+
+                    <div class="image d-flex">
+
+                        <h6 *ngIf="auth.user | async as user" class="nav-item mt-3">
+                            [{{ user.email }}]
+                        </h6>
+                        <a class="nav-link dropdown-toggle" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+
+                            <img src="https://demo.plainadmin.com/assets/images/profile/profile-image.png" class="w-45-img-profil" alt="Image Profil">
+                            <span class="status"></span>
+                        </a>
+                    </div>
+                    <!--<form class="d-flex ">
+                        <input class="form-control me-2 " type="search " placeholder="Search " aria-label="Search ">
+                        <button class="btn btn-outline-success " type="button ">Search</button>
+                    </form>-->
                 </div>
             </div>
         </nav>
-        <div class="container-fluid">
+        <div class="container-fluid ">
+
             <router-outlet></router-outlet>
         </div>
     </div>
