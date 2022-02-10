@@ -45,7 +45,7 @@ const routes: Routes = [
   { path: 'profil', component: ProfilComponent, canActivate: [AuthGuard] },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'verify-email', component: VerifyEmailComponent },
-  { path: '', component: DashboardComponent }, //Temporary
+  { path: '', component: DashboardComponent, canActivate: [AuthGuard] }, //Temporary
   { path: '**', component: PageNotFoundComponent }
 
 ]

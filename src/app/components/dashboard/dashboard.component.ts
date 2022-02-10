@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AuthService } from "../../shared/services/auth.service";
 
 @Component({
@@ -8,12 +9,18 @@ import { AuthService } from "../../shared/services/auth.service";
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(
-            public authService: AuthService
+   status: boolean = false;
+  clickEvent(){
+      this.status = !this.status;       
+  }
+  
+  constructor(private authService: AuthService, public auth: AngularFireAuth) { }
 
-  ) { }
+  ngOnInit() {
+  }
 
-  ngOnInit(): void {
+  logout(){
+    this.authService.SignOut();
   }
 
 }

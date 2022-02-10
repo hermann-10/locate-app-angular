@@ -9,6 +9,11 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 })
 export class SidebarComponent implements OnInit {
 
+   status: boolean = false;
+  clickEvent(){
+      this.status = !this.status;       
+  }
+  
   constructor(private authService: AuthService, public auth: AngularFireAuth) { }
 
   ngOnInit() {

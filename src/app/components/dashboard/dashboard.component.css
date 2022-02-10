@@ -1,7 +1,6 @@
-body{
+body {
     background: #f1f5f9;
 }
-
 
 .mb-30 {
     margin-bottom: 30px;
@@ -47,6 +46,7 @@ body{
     border-radius: 10px;
 }
 
+
 /*.chartjs-size-monitor, .chartjs-size-monitor-expand, .chartjs-size-monitor-shrink {
     position: absolute;
     direction: ltr;
@@ -90,27 +90,34 @@ body{
     color: #4a6cf7;
     background: rgba(74, 108, 247, 0.1);
 }
+
 .status-btn {
     padding: 7px 15px;
     border-radius: 30px;
     font-size: 14px;
     font-weight: 400;
 }
+
 .active-btn {
     background: #4a6cf7;
     color: #fff;
 }
+
 .status-btn.close-btn {
     color: #d50100;
     background: rgba(213, 1, 0, 0.1);
 }
+
 .status-btn {
     padding: 7px 15px;
     border-radius: 30px;
     font-size: 14px;
     font-weight: 400;
 }
-i, span, a {
+
+i,
+span,
+a {
     display: inline-block;
 }
 
@@ -135,6 +142,7 @@ i, span, a {
     padding: 0px 6px;
     font-size: 18px;
 }
+
 .success-btn {
     background: #219653;
     color: #fff;
@@ -145,13 +153,9 @@ i, span, a {
     background: rgba(33, 150, 83, 0.1);
 }
 
-
-
-
-@media (min-width: 992px)
-{
+@media (min-width: 992px) {
     .col-lg-7 {
-    flex: 0 0 auto;
-    width: 58.33333333%;
-}
+        flex: 0 0 auto;
+        width: 58.33333333%;
+    }
 }
