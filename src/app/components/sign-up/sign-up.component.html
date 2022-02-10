@@ -7,7 +7,7 @@
 
             <form [formGroup]="registerForm" (ngSubmit)="register()">
 
-                <div class="form-floating">
+                <div class="form-floating mb-3">
                     <input type="text" class="form-control" placeholder="Name" formControlName="name" required>
                     <label for="floating-input">Name</label>
                 </div>
@@ -24,7 +24,7 @@
 
                 </div>
 
-                <div class="form-floating">
+                <div class="form-floating mb-3">
                     <input type="email" class="form-control" placeholder="Email Address" formControlName="email" required>
                     <label for="floating-input">Email</label>
                 </div>
@@ -41,7 +41,7 @@
 
                 </div>
 
-                <div class="form-floating">
+                <div class="form-floating mb-3">
                     <input type="password" class="form-control" placeholder="Password" formControlName="password" required>
                     <label for="floating-input">Password</label>
                 </div>
@@ -66,7 +66,7 @@
                 </div>
 
 
-                <button class="w-100 btn btn-lg btn-primary" type="submit" [disabled]="!registerForm.valid" (click)="onReset">Sign up</button>
+                <button class="w-100 btn btn-lg btn-primary mb-3" type="submit" [disabled]="!registerForm.valid" (click)="onReset">Sign up</button>
 
             </form>
 
@@ -77,12 +77,12 @@
                 <input type="button" class="w-100 btn btn-lg btn-primary mt-2" value="Sign Up" (click)="authService.SignUp(userEmail.value, userPwd.value)">
             </div>-->
 
-            <div class="form-group">
+            <div class="form-group mb-3">
                 <span class="or"><span class="orInner">Or</span></span>
             </div>
 
             <!-- Continue with Google -->
-            <div class="form-group">
+            <div class="form-group mb-3">
                 <button type="button" class="w-100 btn btn-lg btn-primary mt-2" (click)="authService.GoogleAuth()">
       
           Continue with Google    <i class="fab fa-google"></i>
@@ -98,7 +98,7 @@
             </div>
         </div>-->
 
-            <div class="mt-4 dropdown-divider text-center"></div>
+            <div class="mt-4 dropdown-divider text-center mb-3"></div>
             <div class="redirectToLogin">
 
                 <a class="dropdown-item" routerLink="/sign-in">Already have an account? Sign in</a>
