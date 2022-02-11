@@ -104,12 +104,12 @@ export class AuthService {
 
   const user = firebase.auth().currentUser;
   firebase.auth().onAuthStateChanged(user => {
-    if(user?.emailVerified){
+    /*if(user?.emailVerified){
       console.log('email is verified');
     }else{
       console.log('email not verified');
-      window.alert('Please validate your account in the email you receive');
-    }
+      //window.alert('Please validate your account in the email you receive');
+    }*/
   })   
   //const user = JSON.parse(localStorage.getItem('user'));
   //const user = localStorage.getItem('user');
