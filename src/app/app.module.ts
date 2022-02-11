@@ -32,6 +32,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 const routes: Routes = [
@@ -73,6 +74,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     AngularFirestoreModule,
     FontAwesomeModule,
+    NgbModule,
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
 
