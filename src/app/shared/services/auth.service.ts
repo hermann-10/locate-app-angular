@@ -141,6 +141,11 @@ export class AuthService {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
       this.router.navigate(['sign-in']);
+    
+      //https://www.cloudhadoop.com/angular-reload-component/
+      
+      //https://stackoverflow.com/questions/59552387/how-to-reload-a-page-in-angular-8-the-proper-way
+      window.location.reload();
     })
   }
 
