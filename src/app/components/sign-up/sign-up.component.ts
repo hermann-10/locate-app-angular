@@ -5,9 +5,12 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import Validation from './../utils/validation';
+
 import firebase from 'firebase/compat/app';
 import { Subscription } from 'rxjs';
 import { user } from '@angular/fire/auth';
+
 
 
 @Component({
@@ -32,6 +35,7 @@ export class SignUpComponent implements OnInit/*, OnDestroy */ {
   nameInput = '';
   emailInput = '';
   passwordInput = '';
+  confirmPasswordInput= '';
   submitted! : boolean;
 
   
@@ -56,13 +60,26 @@ export class SignUpComponent implements OnInit/*, OnDestroy */ {
       password: new FormControl(this.passwordInput,[
         Validators.required,
         Validators.minLength(6)
-      ])
-    });
+      ]),
+
+      confirmPassword: new FormControl(this.confirmPasswordInput,[
+        Validators.required,
+        //Validators.minLength(6)
+      ]),
+
+      
+      
+    },
+    {
+      validators: [Validation.match('password', 'confirmPassword')]
+    }
+    );
   }
 
     get email() { return this.registerForm.get('email'); }
     get name() { return this.registerForm.get('name'); }
    get password() { return this.registerForm.get('password'); }
+   get confirmPassword() { return this.registerForm.get('confirmPassword'); }
 
    register(){
      console.log('Hallo Register ?')
@@ -76,6 +93,7 @@ export class SignUpComponent implements OnInit/*, OnDestroy */ {
     const email = this.registerForm.value.email;
     const name = this.registerForm.value.name;
     const password = this.registerForm.value.password;
+    const confirmPassword = this.registerForm.value.confirmPassword;
 
     this.result = this.authService.SignUp(email, password)
     .then(

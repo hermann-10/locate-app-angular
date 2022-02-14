@@ -1,23 +1,21 @@
-<div *ngIf="auth.user | async as user">
-
-</div>
 <div class="d-flex" id="wrapper">
     <!-- Sidebar -->
-    <div *ngIf="auth.user | async as user" class="bg-light border-right mt-5" id="sidebar-wrapper" style="position: fixed" [ngClass]="status ? 'hide' : 'show'">
+    <div *ngIf="isConnected" class="bg-light border-right mt-5" id="sidebar-wrapper" [ngClass]="status ? 'hide' : 'show'">
         <div class="sidebar-heading">LOGO </div>
         <div class="list-group list-group-flush">
-            <a href="#" class="list-group-item list-group-item-action bg-light" routerLink="/dashboard">Dashboard</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light" routerLink="/agorespace">Agorespace</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light" routerLink="/parc-workout">Parc-workout</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light" routerLink="/about">About</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light" routerLink="/contact">Contact</a>
+            <a class="list-group-item list-group-item-action bg-light" routerLink="/dashboard">Dashboard</a>
+            <a class="list-group-item list-group-item-action bg-light" routerLink="/agorespace">Agorespace</a>
+            <a class="list-group-item list-group-item-action bg-light" routerLink="/parc-workout">Parc-workout</a>
+            <a class="list-group-item list-group-item-action bg-light" routerLink="/about">About</a>
+            <a class="list-group-item list-group-item-action bg-light" routerLink="/contact">Contact</a>
+            <a class="list-group-item list-group-item-action bg-light" routerLink="/profil">Voir mon profil</a>
             <a class="list-group-item list-group-item-action bg-light" (click)="logout()">Se déconnecter</a>
         </div>
     </div>
     <!-- /#sidebar-wrapper -->
     <!-- Page Content -->
     <div id="page-content-wrapper">
-        <nav *ngIf="auth.user | async as user" class=" navbar fixed-top navbar-expand-lg navbar-light bg-light ">
+        <nav *ngIf="isConnected" class=" navbar fixed-top navbar-expand-lg navbar-light bg-light ">
 
             <div class="container-fluid ">
                 <button class="btn btn-primary " (click)="clickEvent() "><i class="fa-solid fa-bars "></i></button>
@@ -50,20 +48,26 @@
                         </li>-->
                     </ul>
 
-
-
-
-                    <div class="image d-flex">
-
-                        <h6 *ngIf="auth.user | async as user" class="nav-item mt-3">
+                    <div *ngIf="auth.user | async as user" ngbDropdown class="dropdown d-flex">
+                        <h6 class="nav-item mt-3">
                             [{{ user.email }}]
                         </h6>
-                        <a class="nav-link dropdown-toggle" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button ngbDropdownToggle class="btn" type="button" id="dropdownMenuButton1" aria-expanded="false">
 
-                            <img src="https://demo.plainadmin.com/assets/images/profile/profile-image.png" class="w-45-img-profil" alt="Image Profil">
-                            <span class="status"></span>
-                        </a>
+                            <!--{{user.photoURL ? user.photoURL : <img class="align-self-start mr-5 img-thumbnail rounded-circle" src="(user.photoURL) ? user.photoURL : 'https://demo.plainadmin.com/assets/images/profile/profile-image.png'"
+                            alt="">}}-->
+                            <img class="align-self-start mr-5 img-thumbnail rounded-circle" src="{{(user.photoURL) ? user.photoURL : 'https://demo.plainadmin.com/assets/images/profile/profile-image.png'}}" style="width:50px" alt="{{user.displayName}}">
+
+                      </button>
+                        <ul ngbDropdownMenu aria-labelledby="dropdownMenuButton1">
+                          <li><a ngbDropdownItem routerLink="/profil">Voir mon profil</a></li>
+                          <div class="dropdown-divider"></div>
+                          <li><a ngbDropdownItem (click)="logout()">Se déconnecter</a></li>
+                        </ul>
+                      
                     </div>
+
+                      
                     <!--<form class="d-flex ">
                         <input class="form-control me-2 " type="search " placeholder="Search " aria-label="Search ">
                         <button class="btn btn-outline-success " type="button ">Search</button>

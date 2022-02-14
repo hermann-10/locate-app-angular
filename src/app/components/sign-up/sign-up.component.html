@@ -65,6 +65,23 @@
             </div>-->
                 </div>
 
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control" placeholder="confirm password" formControlName="confirmPassword" required>
+                    <label for="floating-input">Confirm Password</label>
+                </div>
+
+               
+              <div *ngIf="registerForm.get('confirmPassword')?.invalid && (registerForm.get('confirmPassword')?.dirty || registerForm.get('confirmPassword')?.touched)" class="alert alert-danger">
+
+              
+                <div *ngIf="registerForm.get('confirmPassword')?.errors?.['required']">
+                  Confirm Password is required
+                </div>
+                
+                <div *ngIf="registerForm.get('confirmPassword')?.errors?.['matching']">
+                  Confirm Password does not match
+                </div>
+              </div>
 
                 <button class="w-100 btn btn-lg btn-primary mb-3" type="submit" [disabled]="!registerForm.valid" (click)="onReset">Sign up</button>
 
