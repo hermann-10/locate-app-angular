@@ -139,9 +139,14 @@ export class AuthService {
   // Sign out 
   SignOut() {
     return this.afAuth.signOut().then(() => {
-      localStorage.removeItem('user');
-      //this.router.navigate(['sign-in']);
-      this.router.navigateByUrl('sign-in');
+      localStorage.removeItem('user'); //to test if it's useful
+     
+      this.router.navigate(['sign-in']);
+     
+      //I found that when I log out the side bar is present despite my condition to display it only when the user is connected. 
+      //At the beginning it works well but when I disconnect it remains displayed. But if I refresh the page, the sidebar disappears.
+      //https://stackoverflow.com/questions/47813927/how-to-refresh-a-component-in-angular
+      location.reload(); //I added this piece of code to reload the page to make the side bar disappear
     })
   }
 
