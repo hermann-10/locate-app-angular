@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 // Firebase
@@ -33,6 +33,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AgorespaceDetailComponent } from './components/agorespace/agorespace/agorespace-detail/agorespace-detail.component';
 
 
 const routes: Routes = [
@@ -42,12 +43,15 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent, canActivate: [AuthGuard] },
   { path: 'contact', component: ContactComponent, canActivate: [AuthGuard] },
   { path: 'agorespace', component: AgorespaceComponent, canActivate: [AuthGuard] },
+  { path: 'agorespace-detail/:id', component: AgorespaceDetailComponent },
   { path: 'parc-workout', component: ParcWorkoutComponent, canActivate: [AuthGuard] },
   { path: 'profil', component: ProfilComponent, canActivate: [AuthGuard] },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'verify-email', component: VerifyEmailComponent },
-  { path: '', component: DashboardComponent, canActivate: [AuthGuard] }, //Temporary
-  { path: '**', component: PageNotFoundComponent }
+ // { path: '', component: DashboardComponent, canActivate: [AuthGuard] }, //Temporary
+  { path: '**', component: PageNotFoundComponent },
+  { path: '', redirectTo: '/sign-in', pathMatch: 'full' },
+
 
 ]
 
@@ -66,11 +70,13 @@ const routes: Routes = [
     ProfilComponent,
     ContactComponent,
     FooterComponent,
+    AgorespaceDetailComponent,
   ],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
+    FormsModule,
     ReactiveFormsModule,
     AngularFirestoreModule,
     FontAwesomeModule,

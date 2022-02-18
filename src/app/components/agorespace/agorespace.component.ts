@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Agorespace } from 'src/app/shared/model/agorespace';
+import { AGORESPACES_DATA } from '../../shared/data/mock-agora';
+import { AgorespaceService } from 'src/app/shared/services/agorespace.service';
+
 @Component({
   selector: 'app-agorespace',
   templateUrl: './agorespace.component.html',
@@ -7,9 +11,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AgorespaceComponent implements OnInit {
 
-  constructor() { }
+ 
+  agorespaces: Agorespace[] = [];
+
+
+  //agorespace_data = AGORESPACE_DATA;
+  //selectedAgora?: Agorespace;
+
+  constructor(private agoraService: AgorespaceService) { }
 
   ngOnInit(): void {
+    this.getAgoraspaces();
+  }
+
+
+  getAgoraspaces(): void {
+    this.agoraService.getAgorespaces()
+        .subscribe(agorespaces => this.agorespaces = agorespaces);
   }
 
 }

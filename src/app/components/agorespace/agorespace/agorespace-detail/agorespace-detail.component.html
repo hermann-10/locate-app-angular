@@ -1,0 +1,18 @@
+<div class="mt-100" *ngIf="agora">
+
+    <h2>Details : {{agora.name | uppercase}} </h2>
+    <div><span>id: </span>{{agora.id}}</div>
+    <div><span>name: </span>{{agora.name}}</div>
+    <div><span>address: </span>{{agora.address}}</div>
+    <div><span>createdAt: </span>{{agora.createdAt}}</div>
+
+    <div>
+        <label for="agorespace-name">Agorespace name: </label>
+        <input id="agorespace-name" [(ngModel)]="agora.name" placeholder="Agorespace name">
+    </div>
+  
+</div>
+
+
+<button type="button" (click)="goBack()">go back</button>
+ 
