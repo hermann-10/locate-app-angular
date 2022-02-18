@@ -7,15 +7,15 @@
 
     <div class="content container">
 
-
-        <!--<ul class="agorespaces">
-          <li *ngFor="let agora of agorespaces">
-            <a routerLink="/agorespace-detail/{{agora.id}}">
-              <span class="badge">{{agora.id}}</span> {{agora.name}}
-            </a>
-          </li>
-        </ul>-->
-
+      <div>
+        <label for="new-agorespace">Agorespace name: </label>
+        <input id="new-agorespace" #agorespaceName />
+      
+        <!-- (click) passes input value to add() and then clears the input -->
+        <button type="button" class="btn btn-primary add-button" (click)="add(agorespaceName.value); agorespaceName.value=''">
+          Add new agorespace
+        </button>
+      </div>
 
         <div class="row">
           <div *ngFor="let agora of agorespaces" class="col-lg-4 col-md-6 card mb-4">

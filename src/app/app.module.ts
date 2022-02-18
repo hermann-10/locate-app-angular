@@ -5,15 +5,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
-
+import { InMemoryDataService } from './shared/services/in-memory-data.service';
 // Firebase
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import  {  AngularFireAuthGuard, hasCustomClaim  }  from  '@angular/fire/compat/auth-guard' ;
-
-import { environment } from '../environments/environment';
+//import { environment } from '../environments/environment';
+import { environment } from '../environments/environment.prod';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
@@ -37,6 +39,7 @@ import { AgorespaceDetailComponent } from './components/agorespace/agorespace/ag
 
 
 const routes: Routes = [
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full'}, //Adding a default route
   { path: 'sign-in', component: SignInComponent },
   { path: 'register-user', component: SignUpComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
@@ -48,9 +51,7 @@ const routes: Routes = [
   { path: 'profil', component: ProfilComponent, canActivate: [AuthGuard] },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'verify-email', component: VerifyEmailComponent },
- // { path: '', component: DashboardComponent, canActivate: [AuthGuard] }, //Temporary
   { path: '**', component: PageNotFoundComponent },
-  { path: '', redirectTo: '/sign-in', pathMatch: 'full' },
 
 
 ]
@@ -81,6 +82,10 @@ const routes: Routes = [
     AngularFirestoreModule,
     FontAwesomeModule,
     NgbModule,
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, { dataEncapsulation: false }
+    ),
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
 

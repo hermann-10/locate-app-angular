@@ -30,4 +30,13 @@ export class AgorespaceComponent implements OnInit {
         .subscribe(agorespaces => this.agorespaces = agorespaces);
   }
 
+  add(name: string): void {
+    name = name.trim();
+    if (!name) { return; }
+    this.agoraService.addAgora({ name } as Agorespace)
+      .subscribe(agora => {
+        this.agorespaces.push(agora);
+      });
+  }
+
 }
