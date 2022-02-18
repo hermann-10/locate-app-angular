@@ -17,7 +17,7 @@ export class AgorespaceDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private agoreservice: AgorespaceService,
+    private agorespaceService: AgorespaceService,
     private location: Location
   ) { }
 
@@ -27,8 +27,15 @@ export class AgorespaceDetailComponent implements OnInit {
 
   getAgora(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.agoreservice.getAgora(id)
+    this.agorespaceService.getAgora(id)
       .subscribe(agora => this.agora = agora);
+  }
+
+  save(): void {
+    if (this.agora) {
+      this.agorespaceService.updateAgora(this.agora)
+        .subscribe(() => this.goBack());
+    }
   }
 
   goBack(): void {
