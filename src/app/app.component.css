@@ -43,6 +43,11 @@
                             .sidebar-heading {
                                 padding: 2.875rem 1.25rem!important;
                             }
+
+                            .fs-15{
+                                font-size: 15px;
+                            }
+                            
                             
                             @media (min-width: 768px) {
                                 #sidebar-wrapper {
