@@ -22,6 +22,7 @@ import { VerifyEmailComponent } from './components/verify-email/verify-email.com
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './shared/guard/auth.guard';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AboutComponent } from './components/about/about.component';
@@ -32,7 +33,6 @@ import { ContactComponent } from './components/contact/contact.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AgorespaceDetailComponent } from './components/agorespace/agorespace/agorespace-detail/agorespace-detail.component';
 
 
