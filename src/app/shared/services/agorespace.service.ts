@@ -46,7 +46,7 @@ getAgora(id: number): Observable<Agorespace> {
   );
 }
 
-/** PUT: update the hero on the server */
+/** PUT: update the agora on the server */
 updateAgora(agora: Agorespace): Observable<any> {
   return this.http.put(this.agorespacesUrl, agora, this.httpOptions).pipe(
     tap(_ => this.log(`updated hero id=${agora.id}`)),
@@ -54,7 +54,7 @@ updateAgora(agora: Agorespace): Observable<any> {
   );
 }
 
-/** POST: add a new hero to the server */
+/** POST: add a new agora to the server */
 addAgora(agora: Agorespace): Observable<Agorespace> {
   return this.http.post<Agorespace>(this.agorespacesUrl, agora, this.httpOptions).pipe(
     tap((newHAgora: Agorespace) => this.log(`added hero w/ id=${newHAgora.id}`)),
@@ -62,13 +62,27 @@ addAgora(agora: Agorespace): Observable<Agorespace> {
   );
 }
 
-/** DELETE: delete the hero from the server */
+/** DELETE: delete the agora from the server */
 deleteAgora(id: number): Observable<Agorespace> {
   const url = `${this.agorespacesUrl}/${id}`;
 
   return this.http.delete<Agorespace>(url, this.httpOptions).pipe(
     tap(_ => this.log(`deleted agora id=${id}`)),
     catchError(this.handleError<Agorespace>('deleteAgora'))
+  );
+}
+
+/* GET agorespaces whose name contains search term */
+searchAgora(term: string): Observable<Agorespace[]> {
+  if (!term.trim()) {
+    // if not search term, return empty hero array.
+    return of([]);
+  }
+  return this.http.get<Agorespace[]>(`${this.agorespacesUrl}/?name=${term}`).pipe(
+    tap(x => x.length ?
+       this.log(`found agoreapces matching "${term}"`) :
+       this.log(`no agorespaces matching "${term}"`)),
+    catchError(this.handleError<Agorespace[]>('searchAgorespaces', []))
   );
 }
 
