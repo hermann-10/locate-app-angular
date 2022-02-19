@@ -3,10 +3,10 @@
     <h1 class="display-4 pt-5 mb-0 text-center mt-5">Agorespace</h1>
     <hr class="mt-0 mb-5 container">
 
-    <div class="content container">
+    <div class="content">
 
-      <div class="">
-        <div class="form-floating mb-3 w-25 text-right">
+      
+        <div class="form-floating mb-3 w-25">
           <input id="new-agorespace" #agorespaceName class="form-control" placeholder="Name" />
           <label for="new-agorespace">Name</label>
         </div>
@@ -15,7 +15,7 @@
         <button type="button" class="btn btn-primary add-button" (click)="add(agorespaceName.value); agorespaceName.value=''">
           Add new agorespace
         </button>
-      </div>
+ 
 
         <div class="row">
           <div *ngFor="let agora of agorespaces" class="col-lg-4 col-md-6 card mb-4">
