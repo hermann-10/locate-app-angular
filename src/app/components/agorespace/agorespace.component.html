@@ -3,14 +3,14 @@
     <h1 class="display-4 pt-5 mb-0 text-center mt-5">Agorespace</h1>
     <hr class="mt-0 mb-5 container">
 
-  
-
     <div class="content container">
 
-      <div>
-        <label for="new-agorespace">Agorespace name: </label>
-        <input id="new-agorespace" #agorespaceName />
-      
+      <div class="">
+        <div class="form-floating mb-3 w-25 text-right">
+          <input id="new-agorespace" #agorespaceName class="form-control" placeholder="Name" />
+          <label for="new-agorespace">Name</label>
+        </div>
+
         <!-- (click) passes input value to add() and then clears the input -->
         <button type="button" class="btn btn-primary add-button" (click)="add(agorespaceName.value); agorespaceName.value=''">
           Add new agorespace
@@ -25,9 +25,15 @@
               <div class="card-body">
                   <h5 class="card-title">{{ agora.id}} - {{ agora.name}}</h5>
                   <p class="card-text">Address: {{agora.address}}</p>
-                  <a routerLink="/agorespace-detail/{{agora.id}}" class="btn btn-primary">See more</a>
+                
+                  <div class="d-flex justify-content-around">
+                    <a routerLink="/agorespace-detail/{{agora.id}}" class="btn btn-primary">See more</a>
+                    <button type="button" class="btn btn-danger" title="delete agora"
+                (click)="delete(agora)">Delete</button>
+
+                  </div>
               </div>
-          
+
           </div>
       
       </div>

@@ -62,6 +62,16 @@ addAgora(agora: Agorespace): Observable<Agorespace> {
   );
 }
 
+/** DELETE: delete the hero from the server */
+deleteAgora(id: number): Observable<Agorespace> {
+  const url = `${this.agorespacesUrl}/${id}`;
+
+  return this.http.delete<Agorespace>(url, this.httpOptions).pipe(
+    tap(_ => this.log(`deleted agora id=${id}`)),
+    catchError(this.handleError<Agorespace>('deleteAgora'))
+  );
+}
+
 httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };

@@ -39,4 +39,9 @@ export class AgorespaceComponent implements OnInit {
       });
   }
 
+  delete(agora: Agorespace): void {
+    this.agorespaces = this.agorespaces.filter(h => h !== agora);
+    this.agoraService.deleteAgora(agora.id).subscribe();
+  }
+
 }
