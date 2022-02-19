@@ -36,6 +36,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 import { AgorespaceDetailComponent } from './components/agorespace/agorespace/agorespace-detail/agorespace-detail.component';
+import { AgoraSearchComponent } from './components/agorespace/agora-search/agora-search.component';
 
 
 const routes: Routes = [
@@ -47,6 +48,7 @@ const routes: Routes = [
   { path: 'contact', component: ContactComponent, canActivate: [AuthGuard] },
   { path: 'agorespace', component: AgorespaceComponent, canActivate: [AuthGuard] },
   { path: 'agorespace-detail/:id', component: AgorespaceDetailComponent },
+  { path: 'agorespace-search', component: AgoraSearchComponent, canActivate: [AuthGuard] },
   { path: 'parc-workout', component: ParcWorkoutComponent, canActivate: [AuthGuard] },
   { path: 'profil', component: ProfilComponent, canActivate: [AuthGuard] },
   { path: 'forgot-password', component: ForgotPasswordComponent },
@@ -72,6 +74,7 @@ const routes: Routes = [
     ContactComponent,
     FooterComponent,
     AgorespaceDetailComponent,
+    AgoraSearchComponent,
   ],
   imports: [
     BrowserModule,
