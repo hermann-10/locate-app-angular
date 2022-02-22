@@ -70,7 +70,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card-style mb-30">
-                    <h6 class="mb-10">Administrators</h6>
+                    <h6 class="mb-10">Users</h6>
                     <div class="table-wrapper table-responsive">
                         <table class="table clients-table">
                             <thead>
@@ -113,10 +113,11 @@
                                         <p>{{ user.telephone }}</p>
                                     </td>
                                     <!--<td class="min-width">
-                                    <p>Project Manager</p>
+                                    <p>Admin / Customer</p>
                                     </td>-->
                                     <td class="min-width">
-                                        <p>{{ user.createdAt | date:'medium' }}</p>
+                                        <p>{{ user.createdAt.toDate() | date: 'medium' }}</p>
+                                        <!-- You have to call toDate() to convert a Firebase Timestamp to a Javascript Date object before your pipe -->
                                     </td>
 
                                 </tr>

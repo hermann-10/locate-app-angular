@@ -10,6 +10,7 @@ import Validation from './../utils/validation';
 import firebase from 'firebase/compat/app';
 import { Subscription } from 'rxjs';
 import { user } from '@angular/fire/auth';
+import { UserService } from 'src/app/shared/services/user.service';
 
 
 
@@ -19,6 +20,8 @@ import { user } from '@angular/fire/auth';
   styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent implements OnInit/*, OnDestroy */ {
+
+    collectionName = 'table-users';
 
   result: any;
   resultUser: any;
@@ -34,6 +37,7 @@ export class SignUpComponent implements OnInit/*, OnDestroy */ {
 
   nameInput = '';
   emailInput = '';
+  telephoneInput = '';
   passwordInput = '';
   confirmPasswordInput= '';
   submitted! : boolean;
@@ -41,6 +45,9 @@ export class SignUpComponent implements OnInit/*, OnDestroy */ {
   
   constructor(
         public authService: AuthService,
+        private userService: UserService,
+        private afAuth: AngularFireAuth,
+        private afs: AngularFirestore,
         private fb: FormBuilder, 
         private router : Router
   ) { }
@@ -56,6 +63,11 @@ export class SignUpComponent implements OnInit/*, OnDestroy */ {
         Validators.required,
         Validators.minLength(3)
       ]),
+
+       telephone: new FormControl(this.telephoneInput,[
+        Validators.required,
+        //Validators.minLength(3)
+      ]),
   
       password: new FormControl(this.passwordInput,[
         Validators.required,
@@ -67,8 +79,6 @@ export class SignUpComponent implements OnInit/*, OnDestroy */ {
         //Validators.minLength(6)
       ]),
 
-      
-      
     },
     {
       validators: [Validation.match('password', 'confirmPassword')]
@@ -78,11 +88,11 @@ export class SignUpComponent implements OnInit/*, OnDestroy */ {
 
     get email() { return this.registerForm.get('email'); }
     get name() { return this.registerForm.get('name'); }
+     get telephone() { return this.registerForm.get('telephone'); }
    get password() { return this.registerForm.get('password'); }
    get confirmPassword() { return this.registerForm.get('confirmPassword'); }
 
-   register(){
-     console.log('Hallo Register ?')
+   async register(){
 
     this.submitted = true;
 
@@ -91,29 +101,36 @@ export class SignUpComponent implements OnInit/*, OnDestroy */ {
     }
 
     const email = this.registerForm.value.email;
-    const name = this.registerForm.value.name;
+    const displayName = this.registerForm.value.name;
+    const telephone = this.registerForm.value.telephone;
     const password = this.registerForm.value.password;
     const confirmPassword = this.registerForm.value.confirmPassword;
 
-    this.result = this.authService.SignUp(email, password)
-    .then(
-      () => {
-        //this.authService.SetUserData(this.result);
-        console.log('User created:', this.result);
-      }
-    ).catch(
-      (error) => {
-        this.errorMessage = error;
-        console.log(error);
-      }
-    )
+this.result = await this.afAuth.createUserWithEmailAndPassword(email, password);    
 
-   
+     if(this.result) {
+
+    this.createdAt = new Date();
+    const userCreated = await this.userService.createUser({ //spread operator.. 
+      ...this.result.user,
+      uid:this.result.user.uid,
+      email:email,
+      displayName: displayName,
+      telephone: telephone, 
+    });
+
+    console.log('userCreated', userCreated);
+            this.authService.SendVerificationMail();
+
+    this.result = null;
   }
-   onReset() {
+}
+
+ onReset() {
   this.submitted = false;
   this.registerForm.reset();
-   }
+  }
+
 /*ngOnDestroy() {
     this.userSub.unsubscribe();
   }*/

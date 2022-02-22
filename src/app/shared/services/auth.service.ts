@@ -126,9 +126,10 @@ export class AuthService {
      uid: user.uid,
       email: user.email,
       displayName: user.displayName,
-      emailVerified: user.emailVerified,
-      isAdmin: false, //IsAdmin is false at the beginning
-      photoURL: user.photoURL,
+      telephone: user.telephone,
+      //emailVerified: user.emailVerified,
+      //isAdmin: false, //IsAdmin is false at the beginning
+      //photoURL: user.photoURL,
       createdAt: new Date(),
     }
     return userRef.set(userData, {

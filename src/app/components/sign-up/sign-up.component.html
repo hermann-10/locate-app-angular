@@ -12,6 +12,7 @@
                     <label for="floating-input">Name</label>
                 </div>
 
+
                 <div *ngIf="registerForm.get('name')?.invalid && (registerForm.get('name')?.dirty || registerForm.get('name')?.touched)" class="alert alert-danger">
 
                     <div *ngIf="registerForm.get('name')?.errors?.['required']">
@@ -20,6 +21,19 @@
 
                     <div *ngIf="registerForm.get('name')?.errors?.['minlength']">
                         Le nom doit avoir au moins 3 caractères.
+                    </div>
+
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" placeholder="Telephone" formControlName="telephone" required>
+                    <label for="floating-input">Telephone</label>
+                </div>
+
+                <div *ngIf="registerForm.get('telephone')?.invalid && (registerForm.get('telephone')?.dirty || registerForm.get('telephone')?.touched)" class="alert alert-danger">
+
+                    <div *ngIf="registerForm.get('telephone')?.errors?.['required']">
+                        Le numéro de téléphone est requis.
                     </div>
 
                 </div>
@@ -70,25 +84,21 @@
                     <label for="floating-input">Confirm Password</label>
                 </div>
 
-               
-              <div *ngIf="registerForm.get('confirmPassword')?.invalid && (registerForm.get('confirmPassword')?.dirty || registerForm.get('confirmPassword')?.touched)" class="alert alert-danger">
 
-              
-                <div *ngIf="registerForm.get('confirmPassword')?.errors?.['required']">
-                  Confirm Password is required
+                <div *ngIf="registerForm.get('confirmPassword')?.invalid && (registerForm.get('confirmPassword')?.dirty || registerForm.get('confirmPassword')?.touched)" class="alert alert-danger">
+
+
+                    <div *ngIf="registerForm.get('confirmPassword')?.errors?.['required']">
+                        Confirm Password is required
+                    </div>
+
+                    <div *ngIf="registerForm.get('confirmPassword')?.errors?.['matching']">
+                        Confirm Password does not match
+                    </div>
                 </div>
-                
-                <div *ngIf="registerForm.get('confirmPassword')?.errors?.['matching']">
-                  Confirm Password does not match
-                </div>
-              </div>
 
                 <button class="w-100 btn btn-lg btn-primary mb-3" type="submit" [disabled]="!registerForm.valid" (click)="onReset">Sign up</button>
-
             </form>
-
-
-
 
             <!--<div class="form-group">
                 <input type="button" class="w-100 btn btn-lg btn-primary mt-2" value="Sign Up" (click)="authService.SignUp(userEmail.value, userPwd.value)">
