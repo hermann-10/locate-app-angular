@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AuthService } from "../../shared/services/auth.service";
+import { Observable } from 'rxjs';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,14 +11,18 @@ import { AuthService } from "../../shared/services/auth.service";
 })
 export class DashboardComponent implements OnInit {
 
-   status: boolean = false;
+    users$!: Observable<any[]>;
+
+  /* status: boolean = false;
   clickEvent(){
       this.status = !this.status;       
-  }
+  }*/
   
-  constructor(private authService: AuthService, public auth: AngularFireAuth) { }
+  constructor(private authService: AuthService, public auth: AngularFireAuth, private userService: UserService) { }
 
   ngOnInit() {
+    this.users$ = this.userService.getUsers();
+    console.log('this.users$', this.users$);
   }
 
   logout(){

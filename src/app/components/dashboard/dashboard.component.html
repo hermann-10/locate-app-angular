@@ -87,160 +87,39 @@
                                     <th>
                                         <h6>Phone</h6>
                                     </th>
-                                    <th>
+                                    <!--<th>
                                         <h6>Position</h6>
-                                    </th>
+                                    </th>-->
                                     <th>
                                         <h6>Registered</h6>
                                     </th>
                                 </tr>
                                 <!-- end table row-->
                             </thead>
-                            <tbody>
-                                <tr>
+                            <tbody *ngIf="(users$ | async)">
+                                <tr *ngFor="let user of users$ | async">
                                     <td>
                                         <div class="employee-image">
-                                            <img src="https://demo.plainadmin.com/assets/images/lead/lead-1.png" alt="">
+                                            <img src="https://st3.depositphotos.com/1007566/13247/v/600/depositphotos_132471910-stock-illustration-head-human-profile-icon.jpg" alt="Image profil" style="width: 50px;">
                                         </div>
                                     </td>
                                     <td class="min-width">
-                                        <p>Esther Howard</p>
+                                        <p>{{ user.displayName}}</p>
                                     </td>
                                     <td class="min-width">
-                                        <p><a href="#0">yourmail@gmail.com</a></p>
+                                        <p><a href="#0">{{ user.email }}</a></p>
                                     </td>
                                     <td class="min-width">
-                                        <p>(405) 555-0128</p>
+                                        <p>{{ user.telephone }}</p>
                                     </td>
+                                    <!--<td class="min-width">
+                                    <p>Project Manager</p>
+                                    </td>-->
                                     <td class="min-width">
-                                        <p>Project Manager</p>
-                                    </td>
-                                    <td class="min-width">
-                                        <p>16, Feb, 2020</p>
+                                        <p>{{ user.createdAt | date:'medium' }}</p>
                                     </td>
 
                                 </tr>
-                                <!-- end table row -->
-                                <tr>
-                                    <td>
-                                        <div class="employee-image">
-                                            <img src="https://demo.plainadmin.com/assets/images/lead/lead-2.png" alt="">
-                                        </div>
-                                    </td>
-                                    <td class="min-width">
-                                        <p>John Doe</p>
-                                    </td>
-                                    <td class="min-width">
-                                        <p><a href="#0">yourmail@gmail.com</a></p>
-                                    </td>
-                                    <td class="min-width">
-                                        <p>(405) 555-0128</p>
-                                    </td>
-                                    <td class="min-width">
-                                        <p>Project Manager</p>
-                                    </td>
-                                    <td class="min-width">
-                                        <p>16, Feb, 2020</p>
-                                    </td>
-
-                                </tr>
-                                <!-- end table row -->
-                                <tr>
-                                    <td>
-                                        <div class="employee-image">
-                                            <img src="https://demo.plainadmin.com/assets/images/lead/lead-3.png" alt="">
-                                        </div>
-                                    </td>
-                                    <td class="min-width">
-                                        <p>Anee Smith</p>
-                                    </td>
-                                    <td class="min-width">
-                                        <p><a href="#0">yourmail@gmail.com</a></p>
-                                    </td>
-                                    <td class="min-width">
-                                        <p>(405) 555-0128</p>
-                                    </td>
-                                    <td class="min-width">
-                                        <p>Project Manager</p>
-                                    </td>
-                                    <td class="min-width">
-                                        <p>16, Feb, 2020</p>
-                                    </td>
-
-                                </tr>
-                                <!-- end table row -->
-                                <tr>
-                                    <td>
-                                        <div class="employee-image">
-                                            <img src="https://demo.plainadmin.com/assets/images/lead/lead-4.png" alt="">
-                                        </div>
-                                    </td>
-                                    <td class="min-width">
-                                        <p>Jonathon</p>
-                                    </td>
-                                    <td class="min-width">
-                                        <p><a href="#0">yourmail@gmail.com</a></p>
-                                    </td>
-                                    <td class="min-width">
-                                        <p>(405) 555-0128</p>
-                                    </td>
-                                    <td class="min-width">
-                                        <p>Project Manager</p>
-                                    </td>
-                                    <td class="min-width">
-                                        <p>16, Feb, 2020</p>
-                                    </td>
-
-                                </tr>
-                                <!-- end table row -->
-                                <tr>
-                                    <td>
-                                        <div class="employee-image">
-                                            <img src="https://demo.plainadmin.com/assets/images/lead/lead-5.png" alt="">
-                                        </div>
-                                    </td>
-                                    <td class="min-width">
-                                        <p>David Smith</p>
-                                    </td>
-                                    <td class="min-width">
-                                        <p><a href="#0">yourmail@gmail.com</a></p>
-                                    </td>
-                                    <td class="min-width">
-                                        <p>(405) 555-0128</p>
-                                    </td>
-                                    <td class="min-width">
-                                        <p>Project Manager</p>
-                                    </td>
-                                    <td class="min-width">
-                                        <p>16, Feb, 2020</p>
-                                    </td>
-
-                                </tr>
-                                <!-- end table row -->
-                                <tr>
-                                    <td>
-                                        <div class="employee-image">
-                                            <img src="https://demo.plainadmin.com/assets/images/lead/lead-6.png" alt="">
-                                        </div>
-                                    </td>
-                                    <td class="min-width">
-                                        <p>Anna Smith</p>
-                                    </td>
-                                    <td class="min-width">
-                                        <p><a href="#0">yourmail@gmail.com</a></p>
-                                    </td>
-                                    <td class="min-width">
-                                        <p>(405) 555-0128</p>
-                                    </td>
-                                    <td class="min-width">
-                                        <p>Project Manager</p>
-                                    </td>
-                                    <td class="min-width">
-                                        <p>16, Feb, 2020</p>
-                                    </td>
-
-                                </tr>
-                                <!-- end table row -->
                             </tbody>
                         </table>
                         <!-- end table -->
