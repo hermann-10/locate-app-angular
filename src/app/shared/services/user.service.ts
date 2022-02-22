@@ -51,12 +51,12 @@ export class UserService {
     );
   }
 
-  /*
+  
   readUserWithUID(uid: string) {
     return this.afs
       .collection(`${this.collectionName}`, (ref) => ref.where('uid', '==', uid))
       .valueChanges({ idField: 'id' });
       
     }
-  */
+  
 }
