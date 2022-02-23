@@ -16,7 +16,7 @@ export class ProfilComponent implements OnInit {
   users$: Observable<any>[] = [] //user$: Observable<IUser>[] = [] 
   sub:any;
   uniqueUser:any;
-  testObs:any
+  displayNameObs:any
 
 
   constructor(
@@ -50,8 +50,8 @@ export class ProfilComponent implements OnInit {
            
             console.log('mes users$ OBSERVABLE : -> ', this.users$);
       
-            this.testObs = data;
-            console.log('this.testObs :', this.testObs)
+            this.displayNameObs = data;
+            console.log('this.displayNameObs :', this.displayNameObs)
             if (!data || data.length === 0) {
               console.log(`Creating a new personal user for ${user.displayName}`);
               this.userService.createUser(this.uniqueUser);
