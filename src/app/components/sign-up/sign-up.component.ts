@@ -66,7 +66,8 @@ export class SignUpComponent implements OnInit/*, OnDestroy */ {
 
        phoneNumber: new FormControl(this.phoneNumberInput,[
         Validators.required,
-        //Validators.minLength(3)
+        Validators.pattern("^[0-9]*$"),
+        Validators.minLength(9)
       ]),
   
       password: new FormControl(this.passwordInput,[
@@ -88,9 +89,9 @@ export class SignUpComponent implements OnInit/*, OnDestroy */ {
 
     get email() { return this.registerForm.get('email'); }
     get name() { return this.registerForm.get('name'); }
-     get phoneNumber() { return this.registerForm.get('phoneNumber'); }
-   get password() { return this.registerForm.get('password'); }
-   get confirmPassword() { return this.registerForm.get('confirmPassword'); }
+    get phoneNumber() { return this.registerForm.get('phoneNumber'); }
+    get password() { return this.registerForm.get('password'); }
+    get confirmPassword() { return this.registerForm.get('confirmPassword'); }
 
    async register(){
 
@@ -110,18 +111,17 @@ this.result = await this.afAuth.createUserWithEmailAndPassword(email, password);
 
      if(this.result) {
 
-    this.createdAt = new Date();
-    const userCreated = await this.userService.createUser({ //spread operator.. 
-      ...this.result.user,
-      uid:this.result.user.uid,
-      email:email,
-      displayName: displayName,
-      phoneNumber: phoneNumber, 
-    });
+        this.createdAt = new Date();
+        const userCreated = await this.userService.createUser({ //spread operator.. 
+          ...this.result.user,
+          uid:this.result.user.uid,
+          email:email,
+          displayName: displayName,
+          phoneNumber: phoneNumber, 
+        });
 
     console.log('userCreated', userCreated);
-            this.authService.SendVerificationMail();
-
+    this.authService.SendVerificationMail();
     this.result = null;
   }
 }

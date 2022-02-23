@@ -16,25 +16,33 @@
                 <div *ngIf="registerForm.get('name')?.invalid && (registerForm.get('name')?.dirty || registerForm.get('name')?.touched)" class="alert alert-danger">
 
                     <div *ngIf="registerForm.get('name')?.errors?.['required']">
-                        Le nom est requis.
+                        The name is required.
                     </div>
 
                     <div *ngIf="registerForm.get('name')?.errors?.['minlength']">
-                        Le nom doit avoir au moins 3 caractères.
+                        The name must be at least 3 characters long.
                     </div>
 
                 </div>
 
                 <div class="form-floating mb-3">
-                    <input type="number" class="form-control" placeholder="Telephone" formControlName="phoneNumber" required>
+                    <input type="text" class="form-control" placeholder="Telephone" formControlName="phoneNumber" required>
                     <label for="floating-input">Telephone</label>
                 </div>
 
                 <div *ngIf="registerForm.get('phoneNumber')?.invalid && (registerForm.get('phoneNumber')?.dirty || registerForm.get('phoneNumber')?.touched)" class="alert alert-danger">
 
                     <div *ngIf="registerForm.get('phoneNumber')?.errors?.['required']">
-                        Le numéro de téléphone est requis.
+                        The phone number is required.
                     </div>
+
+                    <div *ngIf="registerForm.get('phoneNumber')?.errors?.['minlength']">
+                        The phone number must be at least 9 characters long.
+                    </div>
+
+                    <div *ngIf="registerForm.get('phoneNumber')?.errors?.['pattern']">Enter only number.</div>
+
+
 
                 </div>
 
@@ -46,11 +54,11 @@
                 <div *ngIf="registerForm.get('email')?.invalid && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched)" class="alert alert-danger">
 
                     <div *ngIf="registerForm.get('email')?.errors?.['required']">
-                        L'email est requis.
+                        Email is required.
                     </div>
 
                     <div *ngIf="registerForm.get('email')?.errors?.['pattern']">
-                        Veuillez fournir une adresse email valide.
+                        Please provide a valid email address.
                     </div>
 
                 </div>
@@ -62,21 +70,14 @@
 
                 <div *ngIf="registerForm.get('password')?.invalid && (registerForm.get('password')?.dirty || registerForm.get('password')?.touched)" class="alert alert-danger">
 
-                    <!-- <div *ngIf="email.errors?.required"> -->
-                    <!--L'email est requis.-->
-                    <!-- </div> -->
-
                     <div *ngIf="registerForm.get('password')?.errors?.['required']">
-                        Le mot de passe est requis.
+                        The password is required.
                     </div>
 
                     <div *ngIf="registerForm.get('password')?.errors?.['minlength']">
-                        Le mot de passe doit avoir au moins 6 caractères.
+                        The password must be at least 6 characters long.
                     </div>
 
-                    <!--<div *ngIf="loginForm.get('password')?.invalid">
-              Le mot de passe doit avoir au moins 6 caractères.
-            </div>-->
                 </div>
 
                 <div class="form-floating mb-3">
@@ -100,10 +101,6 @@
                 <button class="w-100 btn btn-lg btn-primary mb-3" type="submit" [disabled]="!registerForm.valid" (click)="onReset">Sign up</button>
             </form>
 
-            <!--<div class="form-group">
-                <input type="button" class="w-100 btn btn-lg btn-primary mt-2" value="Sign Up" (click)="authService.SignUp(userEmail.value, userPwd.value)">
-            </div>-->
-
             <div class="form-group mb-3">
                 <span class="or"><span class="orInner">Or</span></span>
             </div>
@@ -111,7 +108,6 @@
             <!-- Continue with Google -->
             <div class="form-group mb-3">
                 <button type="button" class="w-100 btn btn-lg btn-primary mt-2" (click)="authService.GoogleAuth()">
-      
           Continue with Google    <i class="fab fa-google"></i>
         </button>
             </div>
@@ -130,7 +126,5 @@
 
                 <a class="dropdown-item" routerLink="/sign-in">Already have an account? Sign in</a>
             </div>
-
-
         </div>
     </div>
