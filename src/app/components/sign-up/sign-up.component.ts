@@ -37,7 +37,7 @@ export class SignUpComponent implements OnInit/*, OnDestroy */ {
 
   nameInput = '';
   emailInput = '';
-  telephoneInput = '';
+  phoneNumberInput = '';
   passwordInput = '';
   confirmPasswordInput= '';
   submitted! : boolean;
@@ -64,7 +64,7 @@ export class SignUpComponent implements OnInit/*, OnDestroy */ {
         Validators.minLength(3)
       ]),
 
-       telephone: new FormControl(this.telephoneInput,[
+       phoneNumber: new FormControl(this.phoneNumberInput,[
         Validators.required,
         //Validators.minLength(3)
       ]),
@@ -88,7 +88,7 @@ export class SignUpComponent implements OnInit/*, OnDestroy */ {
 
     get email() { return this.registerForm.get('email'); }
     get name() { return this.registerForm.get('name'); }
-     get telephone() { return this.registerForm.get('telephone'); }
+     get phoneNumber() { return this.registerForm.get('phoneNumber'); }
    get password() { return this.registerForm.get('password'); }
    get confirmPassword() { return this.registerForm.get('confirmPassword'); }
 
@@ -102,7 +102,7 @@ export class SignUpComponent implements OnInit/*, OnDestroy */ {
 
     const email = this.registerForm.value.email;
     const displayName = this.registerForm.value.name;
-    const telephone = this.registerForm.value.telephone;
+    const phoneNumber = this.registerForm.value.phoneNumber;
     const password = this.registerForm.value.password;
     const confirmPassword = this.registerForm.value.confirmPassword;
 
@@ -116,7 +116,7 @@ this.result = await this.afAuth.createUserWithEmailAndPassword(email, password);
       uid:this.result.user.uid,
       email:email,
       displayName: displayName,
-      telephone: telephone, 
+      phoneNumber: phoneNumber, 
     });
 
     console.log('userCreated', userCreated);

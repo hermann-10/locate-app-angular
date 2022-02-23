@@ -22,14 +22,14 @@ export class UserService {
 
   constructor(private afs: AngularFirestore, private router: Router, private afAuth: AngularFireAuth) { }
 
-  createUser (user: { uid: any, displayName: any, email: any, /*emailVerified: any;*/telephone: any, createdAt: Date,  }) { //créer l'utilisateur dans une collection
+  createUser (user: { uid: any, displayName: any, email: any, /*emailVerified: any;*/phoneNumber: any, createdAt: Date,  }) { //créer l'utilisateur dans une collection
       const  newUser = {
       uid: user.uid, //Je prends ici l'id de l'utilisateur
       displayName: user.displayName,
       email: user.email,
       //emailVerified: user.emailVerified,
       //isAdmin: false,
-      telephone: user.telephone,
+      phoneNumber: user.phoneNumber,
       createdAt: new Date(),
     }
 

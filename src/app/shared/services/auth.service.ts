@@ -79,7 +79,12 @@ export class AuthService {
 
   // Sign in with Google
   GoogleAuth() {
+    
     return this.AuthLogin(new firebase.auth.GoogleAuthProvider());
+    /*.then((result:any) => {
+      //this.SetUserData(result.userData);
+      //console.log('this.SetUserData',result.userData);
+    });*/
   }  
 
   // Sign in with Facebook
@@ -126,7 +131,7 @@ export class AuthService {
      uid: user.uid,
       email: user.email,
       displayName: user.displayName,
-      telephone: user.telephone,
+      phoneNumber: user.phoneNumber,
       //emailVerified: user.emailVerified,
       //isAdmin: false, //IsAdmin is false at the beginning
       //photoURL: user.photoURL,

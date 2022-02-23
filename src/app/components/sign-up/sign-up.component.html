@@ -26,13 +26,13 @@
                 </div>
 
                 <div class="form-floating mb-3">
-                    <input type="number" class="form-control" placeholder="Telephone" formControlName="telephone" required>
+                    <input type="number" class="form-control" placeholder="Telephone" formControlName="phoneNumber" required>
                     <label for="floating-input">Telephone</label>
                 </div>
 
-                <div *ngIf="registerForm.get('telephone')?.invalid && (registerForm.get('telephone')?.dirty || registerForm.get('telephone')?.touched)" class="alert alert-danger">
+                <div *ngIf="registerForm.get('phoneNumber')?.invalid && (registerForm.get('phoneNumber')?.dirty || registerForm.get('phoneNumber')?.touched)" class="alert alert-danger">
 
-                    <div *ngIf="registerForm.get('telephone')?.errors?.['required']">
+                    <div *ngIf="registerForm.get('phoneNumber')?.errors?.['required']">
                         Le numéro de téléphone est requis.
                     </div>
 
