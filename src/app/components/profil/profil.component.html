@@ -24,6 +24,9 @@
                         </div>
 
                         <p>User ID: <strong>{{user.uid}}</strong></p>
+                        <div *ngFor="let u of displayNameObs">
+                            <p>Téléphone : {{u.phoneNumber}}</p>
+                        </div>
                         <p>Email: <strong>{{user.email}}</strong></p>
                         <p>Email Verified: <strong>{{user.emailVerified}}</strong></p>
                     </div>

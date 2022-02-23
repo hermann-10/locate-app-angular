@@ -42,6 +42,10 @@ export class SignUpComponent implements OnInit/*, OnDestroy */ {
   confirmPasswordInput= '';
   submitted! : boolean;
 
+  //phoneNumber1 !: this.phoneNumber2: any.getNumber() ;
+
+  
+
   
   constructor(
         public authService: AuthService,
@@ -110,6 +114,7 @@ export class SignUpComponent implements OnInit/*, OnDestroy */ {
 this.result = await this.afAuth.createUserWithEmailAndPassword(email, password);    
 
      if(this.result) {
+console.log('phoneNumber:', phoneNumber);
 
         this.createdAt = new Date();
         const userCreated = await this.userService.createUser({ //spread operator.. 
@@ -117,13 +122,34 @@ this.result = await this.afAuth.createUserWithEmailAndPassword(email, password);
           uid:this.result.user.uid,
           email:email,
           displayName: displayName,
-          phoneNumber: phoneNumber, 
+          phoneNumber:  phoneNumber, 
         });
 
     console.log('userCreated', userCreated);
     this.authService.SendVerificationMail();
     this.result = null;
   }
+}
+
+telInputObject(obj:any) {
+    console.log(obj);
+    obj.setCountry('in');
+  }
+
+  hasError(){
+
+  }
+
+  getNumber(){
+
+  }
+
+  onCountryChange(event:any)
+{
+  event.dialCode;
+  console.log(event.dialCode);
+  console.log(event.name);
+  console.log(event.iso2);
 }
 
  onReset() {
