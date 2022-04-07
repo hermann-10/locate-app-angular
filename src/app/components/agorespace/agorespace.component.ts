@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Agorespace } from 'src/app/shared/model/agorespace';
+import { Agorespace } from 'src/app/shared/interface/agorespace';
 import { AGORESPACES_DATA } from '../../shared/data/mock-agora';
 import { AgorespaceService } from 'src/app/shared/services/agorespace.service';
 

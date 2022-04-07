@@ -4,7 +4,7 @@ import {
   debounceTime, distinctUntilChanged, switchMap
 } from 'rxjs/operators';
 
-import { Agorespace } from 'src/app/shared/model/agorespace';
+import { Agorespace } from 'src/app/shared/interface/agorespace';
 import { AgorespaceService } from 'src/app/shared/services/agorespace.service';
 
 @Component({

@@ -1,28 +1,27 @@
 <div class="text-center container mt-5">
-    <div class="displayTableCell">
 
-        <div class="authBlock">
-            <h3>Thank You for Registering</h3>
 
-            <div class="formGroup" *ngIf="authService.userData as user">
-                <p class="text-center">We have sent a confirmation email to <strong>{{user.email}}</strong>.</p>
-                <p class="text-center">Please check your email and click on the link to verfiy your email address.</p>
-            </div>
+    <div class="authBlock mt-5">
+        <h3 class="mt-5">Thank You for Registering</h3>
 
-            <!-- Calling SendVerificationMail() method using authService Api -->
-            <div class="form-group">
-                <button type="button" class="btn btn-primary" (click)="authService.SendVerificationMail()">
+        <div class="formGroup" *ngIf="authService.userData as user">
+            <p class="text-center">We have sent a confirmation email to <strong>{{user.email}}</strong>.</p>
+            <p class="text-center">Please check your email and click on the link to verfiy your email address.</p>
+        </div>
+
+        <!-- Calling SendVerificationMail() method using authService Api -->
+        <div class="form-group">
+            <button type="button" class="btn btn-primary" (click)="authService.SendVerificationMail()">
           <i class="fas fa-redo-alt"></i>
           Resend Verification Email
         </button>
-            </div>
-
-        </div>
-
-     
-        <div class="redirectToLogin mt-3 mx-auto w-25">
-            <a class="dropdown-item" routerLink="/sign-in">Go back to ? Log In</a>
         </div>
 
     </div>
+
+
+    <div class="redirectToLogin mt-3 mx-auto w-25">
+        <a class="dropdown-item" routerLink="/sign-in">Go back to ? Log In</a>
+    </div>
+
 </div>

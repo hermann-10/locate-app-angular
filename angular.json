@@ -27,19 +27,15 @@
                             "src/assets"
                         ],
                         "styles": [
-                            "./node_modules/intl-tel-input/build/css/intlTelInput.css",
-                            "./dist/ngx-bootstrap/datepicker/bs-datepicker.css",
-                            "./node_modules/bootstrap/dist/css/bootstrap.min.css",
                             "node_modules/intl-tel-input/build/css/intlTelInput.css",
                             "node_modules/bootstrap/dist/css/bootstrap.min.css",
                             "src/styles.css"
                         ],
                         "scripts": [
+                            "./node_modules/@popperjs/core/dist/umd/popper.min.js",
                             "node_modules/intl-tel-input/build/js/intlTelInput.min.js",
                             "node_modules/jquery/dist/jquery.min.js",
-                            "node_modules/@popperjs/core/dist/umd/popper.min.js",
-                            "node_modules/bootstrap/dist/js/bootstrap.min.js",
-                            "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+                            "node_modules/bootstrap/dist/js/bootstrap.min.js"
                         ]
                     },
                     "configurations": {

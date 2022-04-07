@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -13,7 +13,8 @@ import { InMemoryDataService } from './shared/services/in-memory-data.service';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-import  {  AngularFireAuthGuard, hasCustomClaim  }  from  '@angular/fire/compat/auth-guard' ;
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import  { AngularFireAuthGuard, hasCustomClaim }  from '@angular/fire/compat/auth-guard' ;
 //import { environment } from '../environments/environment';
 import { environment } from '../environments/environment.prod';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -23,10 +24,12 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './shared/guard/auth.guard';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { Ng2TelInputModule } from 'ng2-tel-input';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { AboutComponent } from './components/about/about.component';
 import { AgorespaceComponent } from './components/agorespace/agorespace.component';
 import { ParcWorkoutComponent } from './components/parc-workout/parc-workout.component';
@@ -34,28 +37,40 @@ import { ProfilComponent } from './components/profil/profil.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-
 import { AgorespaceDetailComponent } from './components/agorespace/agorespace/agorespace-detail/agorespace-detail.component';
 import { AgoraSearchComponent } from './components/agorespace/agora-search/agora-search.component';
+import { NavComponent } from './components/nav/nav.component';
+import { AnnonceComponent } from './components/annonce/annonce.component';
+import { AddAnnonceComponent } from './components/annonce/add-annonce/add-annonce.component';
+import { AdminComponent } from './components/admin/admin.component';
 
+import { registerLocaleData } from '@angular/common';
+import localFr from '@angular/common/locales/fr';
+import { FirstCharUppercasePipe } from './pipes/first-char-uppercase.pipe';
+import { UppercaseInputDirective } from './directives/uppercase-input.directive'
+
+
+registerLocaleData(localFr);
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full'}, //Adding a default route
   { path: 'sign-in', component: SignInComponent },
   { path: 'register-user', component: SignUpComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  //{ path: 'dashboard', canActivate: [AuthGuard], loadChildren: () => import('./admin.module').then(m => m.AdminModule) }, //Lazy Loading
   { path: 'about', component: AboutComponent, canActivate: [AuthGuard] },
   { path: 'contact', component: ContactComponent, canActivate: [AuthGuard] },
   { path: 'agorespace', component: AgorespaceComponent, canActivate: [AuthGuard] },
   { path: 'agorespace-detail/:id', component: AgorespaceDetailComponent },
   { path: 'agorespace-search', component: AgoraSearchComponent, canActivate: [AuthGuard] },
   { path: 'parc-workout', component: ParcWorkoutComponent, canActivate: [AuthGuard] },
+  { path: 'annonce', component: AnnonceComponent, canActivate: [AuthGuard] },
+   { path: 'add-annonce', component: AddAnnonceComponent, canActivate: [AuthGuard] },
   { path: 'profil', component: ProfilComponent, canActivate: [AuthGuard] },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'verify-email', component: VerifyEmailComponent },
+  { path: 'admin', component: AdminComponent},
   { path: '**', component: PageNotFoundComponent },
-
-
 ]
 
 @NgModule({
@@ -75,6 +90,13 @@ const routes: Routes = [
     FooterComponent,
     AgorespaceDetailComponent,
     AgoraSearchComponent,
+    NavComponent,
+    AnnonceComponent,
+    AddAnnonceComponent,
+    FirstCharUppercasePipe,
+    UppercaseInputDirective,
+    AdminComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -83,8 +105,10 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     AngularFirestoreModule,
+    AngularFireStorageModule,
     FontAwesomeModule,
     NgbModule,
+    Ng2TelInputModule,
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false }
@@ -94,7 +118,9 @@ const routes: Routes = [
 
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'fr-FR' }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,9 +1,10 @@
 import { Injectable, NgZone } from '@angular/core';
-import { User } from "../model/user";
+import { User } from "../interface/user";
 import firebase from 'firebase/compat/app';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { Router } from "@angular/router";
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,8 @@ import { Router } from "@angular/router";
 
 export class AuthService {
   userData: any; // Save logged in user data
+  currentUserSubject = new BehaviorSubject<any | null>(null);
+  //currentUserSubject = new BehaviorSubject<any>(null);
 
   constructor(
     public afs: AngularFirestore,   // Inject Firestore service
@@ -18,6 +21,12 @@ export class AuthService {
     public router: Router,  
     public ngZone: NgZone // NgZone service to remove outside scope warning
   ) {    
+
+    this.afAuth.onAuthStateChanged(user => { //onAuthStateChanged detect the state change of the connexion of a user
+      this.currentUserSubject.next(user);
+    }, console.error);
+
+    
     /* Saving user data in localstorage when 
     logged in and setting up null when logged out */
     this.afAuth.authState.subscribe(user => {
@@ -33,10 +42,11 @@ export class AuthService {
   }
 
   // Sign in with email/password
-  SignIn(email: string, password: string) {
+  /*SignIn(email: string, password: string) {
     return this.afAuth.signInWithEmailAndPassword(email, password)
       .then((result: { user: any; }) => {
         this.ngZone.run(() => {
+
           this.router.navigate(['dashboard']);
         });
         this.SetUserData(result.user);
@@ -44,7 +54,25 @@ export class AuthService {
         window.alert(error.message)
         console.log(error.message);
       })
+  }*/
+  SignIn(email: string, password: string) {
+    return new Promise<void>((resolve, reject) => {
+      this.afAuth.signInWithEmailAndPassword(email, password)
+      .then((result: { user: any; }) => {
+        this.ngZone.run(() => {
+
+          resolve();
+          this.router.navigate(['dashboard']);
+        });
+        //this.SetUserData(result.user);
+      }).catch((error: { message: any; }) => {
+        reject();
+        window.alert(error.message)
+        console.log(error.message);
+      })
+    });
   }
+
 
   // Sign up with email/password
   SignUp(email: string, password: string) {
@@ -80,11 +108,11 @@ export class AuthService {
   // Sign in with Google
   GoogleAuth() {
     
-    return this.AuthLogin(new firebase.auth.GoogleAuthProvider());
-    /*.then((result:any) => {
-      //this.SetUserData(result.userData);
-      //console.log('this.SetUserData',result.userData);
-    });*/
+    return this.AuthLogin(new firebase.auth.GoogleAuthProvider())
+    .then((result:any) => { //check ici ? //commentaire
+      this.SetUserData(result.userData); //commentaire
+    console.log('this.SetUserData',result.userData); //commentaire
+    });
   }  
 
   // Sign in with Facebook
@@ -126,8 +154,8 @@ export class AuthService {
   sign up with username/password and sign in with social auth  
   provider in Firestore database using AngularFirestore + AngularFirestoreDocument service */
   SetUserData(user: any /*firebase.User | null*/) {
-    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
-    const userData: User = {
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`table-users/${user.uid}`);
+    const userData: any/*User*/ = {
      uid: user.uid,
       email: user.email,
       displayName: user.displayName,
@@ -152,7 +180,7 @@ export class AuthService {
       //I found that when I log out the side bar is present despite my condition to display it only when the user is connected. 
       //At the beginning it works well but when I disconnect it remains displayed. But if I refresh the page, the sidebar disappears.
       //https://stackoverflow.com/questions/47813927/how-to-refresh-a-component-in-angular
-      location.reload(); //I added this piece of code to reload the page to make the side bar disappear
+      //location.reload(); //I added this piece of code to reload the page to make the side bar disappear
     })
   }
 

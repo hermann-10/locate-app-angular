@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
-import { Agorespace } from './../model/agorespace';
+import { Agorespace } from '../interface/agorespace';
 
 @Injectable({
   providedIn: 'root',

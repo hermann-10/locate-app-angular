@@ -1,4 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import '~font-awesome/css/font-awesome.css';
-@import "~bootstrap/dist/css/bootstrap.css"
+@import "~bootstrap/dist/css/bootstrap.css";
+
+/*.iti__flag {
+    background-image: url("path/to/flags.png");
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+    .iti__flag {
+        background-image: url("path/to/flags@2x.png");
+    }
+}*/

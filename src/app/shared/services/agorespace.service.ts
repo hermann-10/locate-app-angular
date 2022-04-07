@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 
 
-import { Agorespace } from '../model/agorespace';
+import { Agorespace } from '../interface/agorespace';
 import { AGORESPACES_DATA } from '../data/mock-agora';
 
 

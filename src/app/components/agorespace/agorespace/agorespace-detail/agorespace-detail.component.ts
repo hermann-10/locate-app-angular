@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { Agorespace } from 'src/app/shared/model/agorespace';
+import { Agorespace } from 'src/app/shared/interface/agorespace';
 import { AgorespaceService } from 'src/app/shared/services/agorespace.service';
 
 @Component({

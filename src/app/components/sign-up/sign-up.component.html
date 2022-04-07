@@ -12,7 +12,6 @@
                     <label for="floating-input">Name</label>
                 </div>
 
-
                 <div *ngIf="registerForm.get('name')?.invalid && (registerForm.get('name')?.dirty || registerForm.get('name')?.touched)" class="alert alert-danger">
 
                     <div *ngIf="registerForm.get('name')?.errors?.['required']">
@@ -57,9 +56,6 @@
                     <div *ngIf="registerForm.get('phoneNumber')?.errors?.['pattern']">
                         Enter only number.
                     </div>
-
-
-
                 </div>
 
                 <div class="form-floating mb-3">
@@ -139,8 +135,8 @@
 
             <div class="mt-4 dropdown-divider text-center mb-3"></div>
             <div class="redirectToLogin">
-
                 <a class="dropdown-item" routerLink="/sign-in">Already have an account? Sign in</a>
             </div>
         </div>
+
     </div>

@@ -23,30 +23,27 @@ export class SignUpComponent implements OnInit/*, OnDestroy */ {
 
     collectionName = 'table-users';
 
-  result: any;
-  resultUser: any;
-  errorMessage: string = '';
-  createdAt!: any;
-  user:any;
-  userUID:any;
-  userDisplayName:any;
-  userPhotoURL:any;
-  currentUser!: firebase.User;
-  userSub!: Subscription;
-  registerForm!: FormGroup;
+    result: any;
+    resultUser: any;
+    errorMessage: string = '';
+    createdAt!: any;
+    user:any;
+    userUID:any;
+    userDisplayName:any;
+    userPhotoURL:any;
+    currentUser!: firebase.User;
+    userSub!: Subscription;
+    registerForm!: FormGroup;
 
-  nameInput = '';
-  emailInput = '';
-  phoneNumberInput = '';
-  passwordInput = '';
-  confirmPasswordInput= '';
-  submitted! : boolean;
+    nameInput = '';
+    emailInput = '';
+    phoneNumberInput = '';
+    passwordInput = '';
+    confirmPasswordInput= '';
+    submitted! : boolean;
 
   //phoneNumber1 !: this.phoneNumber2: any.getNumber() ;
 
-  
-
-  
   constructor(
         public authService: AuthService,
         private userService: UserService,
@@ -111,10 +108,10 @@ export class SignUpComponent implements OnInit/*, OnDestroy */ {
     const password = this.registerForm.value.password;
     const confirmPassword = this.registerForm.value.confirmPassword;
 
-this.result = await this.afAuth.createUserWithEmailAndPassword(email, password);    
+    this.result = await this.afAuth.createUserWithEmailAndPassword(email, password);    
 
      if(this.result) {
-console.log('phoneNumber:', phoneNumber);
+        console.log('phoneNumber:', phoneNumber);
 
         this.createdAt = new Date();
         const userCreated = await this.userService.createUser({ //spread operator.. 
@@ -131,7 +128,7 @@ console.log('phoneNumber:', phoneNumber);
   }
 }
 
-telInputObject(obj:any) {
+  telInputObject(obj:any) {
     console.log(obj);
     obj.setCountry('in');
   }
@@ -144,13 +141,12 @@ telInputObject(obj:any) {
 
   }
 
-  onCountryChange(event:any)
-{
-  event.dialCode;
-  console.log(event.dialCode);
-  console.log(event.name);
-  console.log(event.iso2);
-}
+  onCountryChange(event:any) {
+    event.dialCode;
+    console.log(event.dialCode);
+    console.log(event.name);
+    console.log(event.iso2);
+  }
 
  onReset() {
   this.submitted = false;

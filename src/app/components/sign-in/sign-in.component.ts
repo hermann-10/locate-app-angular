@@ -49,6 +49,7 @@ export class SignInComponent implements OnInit {
     .then(
       () => {
         this.router.navigate(['/dashboard']); //traiter également la partie connexion en tant que utilisateur normal
+
       }
     ).catch(
       (error) => {
@@ -58,7 +59,7 @@ export class SignInComponent implements OnInit {
     )
   }
 
-    onReset() {
+  onReset() {
   this.submitted = false;
   this.loginForm.reset();
    }

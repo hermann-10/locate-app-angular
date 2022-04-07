@@ -1,20 +1,20 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { AuthService } from './shared/services/auth.service';
+import { AuthService } from './../../shared/services/auth.service';
 import firebase from 'firebase/compat/app';
 import { Observable, Subscription, BehaviorSubject } from 'rxjs';
-import { UserService } from './shared/services/user.service';
+import { UserService } from './../../shared/services/user.service';
 import { User } from '@firebase/auth';
 import { getAuth } from "firebase/auth";
 
 
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-nav',
+  templateUrl: './nav.component.html',
+  styleUrls: ['./nav.component.css']
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class NavComponent implements OnInit, OnDestroy {
   title = 'Locate App Angular';
 
   //user:any;
@@ -30,9 +30,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
   loggedIn = new BehaviorSubject<boolean>(false);
   currentUserSubject: any;
-  currentUserSubscription!: Subscription;
 
-  currentUser = true;
+  currentUserSubscription!: Subscription;
+  currentUser!:User;
 
   //auth = getAuth();
   user = this.auth.currentUser;
@@ -55,12 +55,13 @@ export class AppComponent implements OnInit, OnDestroy {
      }
 
   ngOnInit(): void{
-    /*this.currentUserSubscription = this.authService.currentUserSubject.subscribe({
-      next: (user: User) => this.currentUser = <any>user,
+    this.currentUserSubscription = this.authService.currentUserSubject.subscribe({
+      next: user => this.currentUser = <any>user,
+      //next: (user: User) => this.currentUser = <any>user,
       error: console.error
     });
   console.log('auth', this.auth);
-  console.log('user', this.user);*/
+  console.log('user', this.user);
 
 
   this.subscription1$ = this.afAuth.authState.subscribe(user => {
@@ -92,7 +93,9 @@ export class AppComponent implements OnInit, OnDestroy {
   this.user = user;
     if (this.user) {
          console.log(this.userService.readUserWithUID(user.uid));
-
+         console.log('EMAIL VERIFIED ?')
+         console.log(this.userService.readUserWithUID(user.emailVerified));
+this.emailVerified = user.emailVerified
         this.sub = this.userService.readUserWithUID(user.uid).subscribe( //Question : à propos de this.sub que j'ai écrit 2 fois
           (data) => {
 
@@ -114,6 +117,8 @@ export class AppComponent implements OnInit, OnDestroy {
         );
       }
     });
+
+    
   }
 
   public isLoggedIn(): boolean {

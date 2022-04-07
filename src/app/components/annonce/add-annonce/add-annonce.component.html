@@ -1,0 +1,49 @@
+<div class="container mt-5 py-5">
+    <div class="row mb-5">
+        <div class="col-12 col-md-10 col-lg-8 col-xl-6 mx-auto">
+            <div class="bg-white shadow rounded p-4">
+                <h1 class="display-6 text-dark">Créer une annonce</h1>
+
+                <hr class="bg-dark mb-5">
+                <!-- [formGroup]="offerForm" -> Property Binding -->
+                <form [formGroup]="addOfferForm" (ngSubmit)="onSubmitOfferForm()">
+                    <!--(ngSubmit)="onSubmitOfferForm()" -> Event binding-->
+                    <input type="text" formControlName="id" hidden>
+
+                    <div class="form-group mb-3">
+                        <label for="offerTitleInput">Titre</label>
+                        <input type="text" id="offerTitleInput" class="form-control" formControlName="title">
+                    </div>
+                    <div class="px-3" *ngIf="currentOfferPhotoUrl && currentOfferPhotoUrl !==''">
+                        <img [src]="currentOfferPhotoUrl" alt="Offer photo" class="w-100 rouned">
+
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="offerPhotoInput ">Choisir une image</label>
+                        <input type="file" id="offerPhotoInput " class="form-control" formControlName="photo" (change)="onChangeOfferPhoto($event)">
+                    </div>
+                    <div class="form-group mb-3 ">
+                        <label for="offerBrandInput">Marque</label>
+                        <input type="text" id="offerBrandInput" class="form-control" formControlName="brand" appUppercaseInput>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="offerModelInput ">Modèle</label>
+                        <input type="text" id="offerModelInput" class="form-control" formControlName="model">
+                    </div>
+                    <div class="form-group mb-3 ">
+                        <label for="offerDescriptionInput ">Description</label>
+                        <input type="text" id="offerDescriptionInput" class="form-control" formControlName="description">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="offerPriceInput">Prix</label>
+                        <input type="number" id="offerPriceInput" class="form-control" formControlName="price">
+                    </div>
+                    <div class="d-flex">
+                        <button class="btn btn-success mx-auto" type="submit" [disabled]="addOfferForm.invalid">Enregistrer</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
