@@ -24,6 +24,10 @@ export class TestFilterComponent implements OnChanges {
 
 ngOnChanges(): void {
     if (this.groupFilters) this.filterAgoraList(this.groupFilters, this.agorespaces);
+
+    console.log('this.filterAgoraList: ',this.filterAgoraList);
+    console.log('this.groupFilters: ',this.groupFilters);
+    console.log('this.agorespaces: ',this.agorespaces);
 }
 
 filterAgoraList(filters: any, agorespaces: any): void {
@@ -31,33 +35,19 @@ filterAgoraList(filters: any, agorespaces: any): void {
     const keys = Object.keys(filters);
 
     const filterAgora = (agora: any) => {
-    let result = keys.map(key => {
-
-    return String(agora[key]).toLowerCase().startsWith(String(filters[key]).toLowerCase())
-
-    });
-    // To Clean Array from undefined if the age is passed so the map will fill the gap with (undefined)
-
-    this.result = this.result.filter((it: any) => it !== undefined);
-    // Filter the Age out from the other filters
-
-    if (filters['ageto'] && filters['agefrom']) {
-    
-      if (agora['age']) {
-
-      if (+agora['age'] >= +filters['agefrom'] && +agora['age'] <= +filters['ageto']) {
-        this.result.push(true);
-      } else {
-        this.result.push(false);
-      }
-
-      } else {
-        this.result.push(false);
-      }
+      let result = keys.map (key => {
+        if(agora[key]) {
+            return String(agora[key]).toLowerCase().startsWith(String(filters[key]).toLowerCase())
+        } else {
+          return false;
+        }
+      });
+      return result.reduce((acc, cur: any) => { return acc & cur }, 1)
     }
-      return this.result.reduce((acc: any, cur: any) => { return acc & cur }, 1)
-    }
-      this.filteredAgorespaces = this.agorespaces.filter(filterAgora);
+    this.filteredAgorespaces = this.agorespaces.filter(filterAgora);
+
+        console.log('HALLO this.filteredAgorespaces', this.filteredAgorespaces);
+
 }
 
 loadAgorespaces(): void {
