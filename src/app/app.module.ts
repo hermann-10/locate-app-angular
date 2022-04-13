@@ -58,15 +58,16 @@ const routes: Routes = [
   { path: 'register-user', component: SignUpComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   //{ path: 'dashboard', canActivate: [AuthGuard], loadChildren: () => import('./admin.module').then(m => m.AdminModule) }, //Lazy Loading
-  { path: 'about', component: AboutComponent, canActivate: [AuthGuard] },
-  { path: 'contact', component: ContactComponent, canActivate: [AuthGuard] },
+
   { path: 'agorespace', component: AgorespaceComponent, canActivate: [AuthGuard] },
   { path: 'agorespace-detail/:id', component: AgorespaceDetailComponent },
   { path: 'agorespace-search', component: AgoraSearchComponent, canActivate: [AuthGuard] },
   { path: 'parc-workout', component: ParcWorkoutComponent, canActivate: [AuthGuard] },
   { path: 'annonce', component: AnnonceComponent, canActivate: [AuthGuard] },
-   { path: 'add-annonce', component: AddAnnonceComponent, canActivate: [AuthGuard] },
+  { path: 'add-annonce', component: AddAnnonceComponent, canActivate: [AuthGuard] },
   { path: 'profil', component: ProfilComponent, canActivate: [AuthGuard] },
+  { path: 'about', component: AboutComponent, canActivate: [AuthGuard] },
+  { path: 'contact', component: ContactComponent, canActivate: [AuthGuard] },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'verify-email', component: VerifyEmailComponent },
   { path: 'admin', component: AdminComponent},
@@ -95,7 +96,8 @@ const routes: Routes = [
     AddAnnonceComponent,
     FirstCharUppercasePipe,
     UppercaseInputDirective,
-    AdminComponent
+    AdminComponent,
+    PageNotFoundComponent
     
   ],
   imports: [

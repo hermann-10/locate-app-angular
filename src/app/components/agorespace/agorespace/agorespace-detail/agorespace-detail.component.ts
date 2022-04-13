@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { Agorespace } from 'src/app/shared/interface/agorespace';
@@ -18,7 +18,9 @@ export class AgorespaceDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private agorespaceService: AgorespaceService,
-    private location: Location
+    private location: Location,
+    private router: Router
+
   ) { }
 
   ngOnInit(): void {
@@ -41,5 +43,10 @@ export class AgorespaceDetailComponent implements OnInit {
   goBack(): void {
     this.location.back();
   }
+
+//openGoogleMaps(address:string) {
+    //this.router.navigate([url])
+    //this.router.navigateByUrl(`https://www.google.com/maps/search/?api=1&query=${{address}}`);
+//}
 
 }
