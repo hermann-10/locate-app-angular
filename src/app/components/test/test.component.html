@@ -1,0 +1,11 @@
+<div class="container">
+    <h1 class="display-4 pt-5 mb-0 text-center mt-5">Test List Agorespaces</h1>
+    <hr class="mt-0 mb-5 container">
+
+
+    <div class="content container">
+        <app-search (groupFilters)="filters = $event"></app-search>
+        <br/>
+        <app-test-filter [groupFilters]="filters" [searchByKeyword]="searchText"></app-test-filter>
+    </div>
+</div>

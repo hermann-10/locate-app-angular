@@ -9,6 +9,10 @@
                     <a class="nav-link" routerLink="/dashboard">Dashboard</a>
                 </li>
 
+                <li><a class="nav-link" routerLink="/test">Test Recherche</a></li>
+
+
+                <li><a class="nav-link" routerLink="/search">Rechercher</a></li>
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -16,18 +20,18 @@
                     </a>
                     <ul class="dropdown-menu dropdown" aria-labelledby="navbarDarkDropdownMenuLink">
                         <li><a class="dropdown-item" routerLink="/agorespace">Voir les agorespaces</a></li>
-                        <li>
-                            <a class="dropdown-item disabled">Rechercher un agorespace</a></li>
+                        <!--<li>
+                            <a class="dropdown-item" routerLink="/agora-search">Rechercher un agorespace</a></li>-->
                     </ul>
                 </li>
 
-                <li class=" nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false ">
                         Parcs-workout
                     </a>
                     <ul class="dropdown-menu dropdown" aria-labelledby="navbarDarkDropdownMenuLink">
                         <li><a class="dropdown-item" routerLink="/parc-workout">Voir les parcs-workout</a></li>
-                        <li><a class="dropdown-item disabled">Rechercher un parc-workout</a></li>
+                        <!--<li><a class="dropdown-item disabled ">Rechercher un parc-workout</a></li>-->
                     </ul>
                 </li>
 
@@ -58,7 +62,7 @@
                 </li>
             </ul>
 
-            <div *ngIf="auth.user | async as user " ngbDropdown class="dropdown d-flex ">
+            <div *ngIf="auth.user | async as user" ngbDropdown class="dropdown d-flex">
                 <!--<h6 class="nav-item mt-3 ">
                             [{{ user.email }}]
                         </h6>-->
@@ -68,20 +72,20 @@
                 </h6>
 
                 <!-- Display the name from Google database -->
-                <h6 *ngIf="user.displayName " class="nav-item mt-3 ">
+                <h6 *ngIf="user.displayName" class="nav-item mt-3">
                     [{{user.displayName }}]
                 </h6>
                 <button ngbDropdownToggle class="btn" type="button" id="dropdownMenuButton1" aria-expanded="false">
 
                             <!--{{user.photoURL ? user.photoURL : <img class="align-self-start mr-5 img-thumbnail rounded-circle " src="(user.photoURL) ? user.photoURL : 'https://demo.plainadmin.com/assets/images/profile/profile-image.png' "
                             alt=" ">}}-->
-                        <img class="align-self-start mr-5 img-thumbnail rounded-circle " src="{{(user.photoURL) ? user.photoURL :
-                                'https://st3.depositphotos.com/1007566/13247/v/600/depositphotos_132471910-stock-illustration-head-human-profile-icon.jpg'}} " style="width:50px " alt="{{user.displayName}} ">
+                        <img class="align-self-start mr-5 img-thumbnail rounded-circle" src="{{(user.photoURL) ? user.photoURL :
+                                'https://st3.depositphotos.com/1007566/13247/v/600/depositphotos_132471910-stock-illustration-head-human-profile-icon.jpg'}}" style="width:50px" alt="{{user.displayName}}">
 
                         </button>
-                <ul ngbDropdownMenu aria-labelledby="dropdownMenuButton1 ">
-                    <li><a ngbDropdownItem routerLink="/profil ">Voir mon profil</a></li>
-                    <div class="dropdown-divider "></div>
+                <ul ngbDropdownMenu aria-labelledby="dropdownMenuButton1">
+                    <li><a ngbDropdownItem routerLink="/profil">Voir mon profil</a></li>
+                    <div class="dropdown-divider"></div>
                     <li><a ngbDropdownItem (click)="logout() ">Se déconnecter</a></li>
                 </ul>
             </div>

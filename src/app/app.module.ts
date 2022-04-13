@@ -43,11 +43,16 @@ import { NavComponent } from './components/nav/nav.component';
 import { AnnonceComponent } from './components/annonce/annonce.component';
 import { AddAnnonceComponent } from './components/annonce/add-annonce/add-annonce.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { SearchComponent } from './components/search/search.component';
+import { TestFilterComponent } from './components/test-filter/test-filter.component'
+import { TestComponent } from './components/test/test.component';
 
 import { registerLocaleData } from '@angular/common';
 import localFr from '@angular/common/locales/fr';
 import { FirstCharUppercasePipe } from './pipes/first-char-uppercase.pipe';
+import { FilterPipe } from './pipes/filter.pipe';
 import { UppercaseInputDirective } from './directives/uppercase-input.directive'
+import { Filter2Pipe } from './pipes/filter2.pipe';
 
 
 registerLocaleData(localFr);
@@ -61,10 +66,13 @@ const routes: Routes = [
 
   { path: 'agorespace', component: AgorespaceComponent, canActivate: [AuthGuard] },
   { path: 'agorespace-detail/:id', component: AgorespaceDetailComponent },
-  { path: 'agorespace-search', component: AgoraSearchComponent, canActivate: [AuthGuard] },
+  { path: 'agora-search', component: AgoraSearchComponent, canActivate: [AuthGuard] },
   { path: 'parc-workout', component: ParcWorkoutComponent, canActivate: [AuthGuard] },
   { path: 'annonce', component: AnnonceComponent, canActivate: [AuthGuard] },
   { path: 'add-annonce', component: AddAnnonceComponent, canActivate: [AuthGuard] },
+  { path: 'search', component: SearchComponent, canActivate: [AuthGuard] },
+  { path: 'test-filter', component: TestFilterComponent, canActivate: [AuthGuard] },
+  { path: 'test', component: TestComponent, canActivate: [AuthGuard] },
   { path: 'profil', component: ProfilComponent, canActivate: [AuthGuard] },
   { path: 'about', component: AboutComponent, canActivate: [AuthGuard] },
   { path: 'contact', component: ContactComponent, canActivate: [AuthGuard] },
@@ -95,9 +103,15 @@ const routes: Routes = [
     AnnonceComponent,
     AddAnnonceComponent,
     FirstCharUppercasePipe,
+    FilterPipe,
+    Filter2Pipe,
     UppercaseInputDirective,
     AdminComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    SearchComponent,
+    TestFilterComponent,
+    TestComponent,
+    
     
   ],
   imports: [

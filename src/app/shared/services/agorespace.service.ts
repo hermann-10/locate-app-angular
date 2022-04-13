@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 
 
 import { Agorespace } from '../interface/agorespace';
 import { AGORESPACES_DATA } from '../data/mock-agora';
+import { AGORESPACES } from '../data/agorespace.data';
 
 
 @Injectable({
@@ -14,11 +15,18 @@ import { AGORESPACES_DATA } from '../data/mock-agora';
 })
 export class AgorespaceService {
 
+  setGroupFilter$ = new Subject<any>();
+  getGroupFilter = this.setGroupFilter$.asObservable();
+
   private agorespacesUrl = 'api/agorespaces';  // URL to web api
 
   constructor(
     private http: HttpClient,
   ) { }
+
+   fetchAgorespaces(): Observable<any> {
+    return of(AGORESPACES);
+  }
 
   /*getAgorespaces(): Observable<Agorespace[]> {
     const agorespaces = of(AGORESPACES_DATA);
